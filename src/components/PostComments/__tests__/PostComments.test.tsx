@@ -10,10 +10,13 @@ describe('Teste para o componente PostComment', () => {
     test('Teste para um Text Area', () => {
         render(<PostComment/>)
 
-        fireEvent.change(screen.getByTestId('comment-textarea'), { target: { value: 'Dark Souls 1 é melhor que Elden' } });
-        fireEvent.change(screen.getByTestId('comment-textarea'), { target: { value: 'BloodBorne é o melhor!' } });
+        fireEvent.change(screen.getByTestId('txt-area'), { target: { value: 'DS1 melhor que Elden' } });
+        fireEvent.click(screen.getByTestId('btn-txt'));
 
-        expect(screen.getByTestId('Primeirocomentario')).toHaveTextContent('Dark Souls 1 é melhor que Elden');
-        expect(screen.getByTestId('Segundocomentario')).toHaveTextContent('BloodBorne é o melhor!');
+        fireEvent.change(screen.getByTestId('txt-area'), { target: { value: 'BloodBorne melhor que Elden' } });
+        fireEvent.click(screen.getByTestId('btn-txt'));
+
+        expect(screen.getByTestId('souls-0')).toHaveTextContent('DS1 melhor que Elden');
+        expect(screen.getByTestId('souls-1')).toHaveTextContent('BloodBorne melhor que Elden');
     })
 });
